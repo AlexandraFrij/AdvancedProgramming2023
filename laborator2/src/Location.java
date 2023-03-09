@@ -1,13 +1,7 @@
-/**
- * the Location class contains information about a location such as name( a string), type (an enum) and coordinates x,y (int)
- */
+/* Author: Frij Alexandra-Stefania */
 public class Location {
-    enum locationsType {
-        city, airport, gasStation
-    }
-
     private String name;
-    private locationsType type;
+    private String type;
     private int coordinateX;
     private int coordinateY;
 
@@ -19,7 +13,7 @@ public class Location {
      * @param x    the given value for the coordinateX variable
      * @param y    the given for the coordinateY variable
      */
-    public Location(String name, locationsType type, int x, int y) {
+    public Location(String name, String type, int x, int y) {
         this.name = name;
         this.type = type;
         this.coordinateX = x;
@@ -49,7 +43,7 @@ public class Location {
      *
      * @return the value of type variable
      */
-    public locationsType getType() {
+    public String getType() {
         return type;
     }
 
@@ -58,7 +52,7 @@ public class Location {
      *
      * @param type the locationsType(enum) given value
      */
-    public void setType(locationsType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -107,5 +101,19 @@ public class Location {
     public String toString() {
         return "Location{ name = " + name + ", type = " + type + ", x coordinate = " + coordinateX
                 + ", y coordinate = " + coordinateY + " }";
+    }
+
+    /**
+     * the method overrides the .equals function so that it returns false if the obj is null or not an intance of Location class, else true
+     *
+     * @param obj an object of a class
+     * @return false if obj is null or not an instance of class Location, true otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Location))
+            return false;
+        Location other = (Location) obj;
+        return name.equals(other.name);
     }
 }
