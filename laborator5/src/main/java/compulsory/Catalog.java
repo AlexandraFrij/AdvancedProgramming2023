@@ -4,11 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-
 /**
  * describes a catalog that consists of a list of documents and has a name
  */
@@ -82,36 +77,5 @@ public class Catalog implements Serializable {
                 " documents: " + this.docs;
     }
 
-    /**
-     * saves the current catalog in the given path
-     *
-     * @param path the path used for saving
-     * @throws IOException possible exceptions at input/output
-     */
-    public void save(String path) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new File(path), this);
-    }
-
-    /**
-     * loads a catalog from the given path
-     *
-     * @param path the path were the catalog is located
-     * @return the catalog
-     * @throws InvalidCatalogException custom exception for the class
-     */
-    public static Catalog load(String path) throws InvalidCatalogException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            Object loadedObject = objectMapper.readValue(new File(path), Object.class);
-            if (loadedObject instanceof Catalog) {
-                return (Catalog) loadedObject;
-            } else {
-                throw new InvalidCatalogException("Object is not a Catalog");
-            }
-        } catch (IOException e) {
-            throw new InvalidCatalogException("Error loading catalog from file");
-        }
-    }
 
 }

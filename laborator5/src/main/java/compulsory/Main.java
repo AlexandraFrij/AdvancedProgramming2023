@@ -16,14 +16,14 @@ public class Main {
         catalog.add(book);
         //save catalog and verify the possible exceptions
         try {
-            catalog.save("catalog.json");
+            CatalogUtil.save(catalog,"catalog.json");
             System.out.println("Catalog saved!");
         } catch (IOException e) {
             System.out.println("Could not save catalog" + e.getMessage());
         }
         //load catalog and verify the possible exceptions
         try {
-            catalog.load("\"C:\\Users\\Stefania\\OneDrive\\Desktop\\programare avansata\\laborator5\\catalog.json\"");
+            CatalogUtil.load("\"C:\\Users\\Stefania\\OneDrive\\Desktop\\programare avansata\\laborator5\\catalog.json\"");
             System.out.println("Catalog loaded! " + catalog.toString());
         } catch (InvalidCatalogException e) {
             System.out.println("Could not load catalog " + e.getMessage());
